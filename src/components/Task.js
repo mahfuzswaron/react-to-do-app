@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
 
 const Task = ({ task }) => {
-    const { title, description } = task;
+    const { title, description, _id } = task;
     const [show, setShow] = useState(false);
+    const deleteTask = () => {
+        fetch(`http://localhost:5000/tasks/${_id}`, {
+            method: 'DELETE', 
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+    }
     return (
         <div  data-tip={show ? 'click to hide' : 'click to expand'} className='text-left my-3 border rounded-lg p-2 hover:bg-gray-50 tooltip  tooltip-info'>
             <h3 onClick={() => setShow(!show)} className='text-2xl p-1 m-1 cursor-pointer'>{title}</h3>
@@ -10,7 +20,7 @@ const Task = ({ task }) => {
                 <p className='text-xl p-1 m-1'>{description}</p>
              <div class="card-actions justify-end">
                 <button className="btn btn-success text-white">Completed</button>
-                <button className="btn btn-error text-white">remove</button>
+                <button onClick={deleteTask} className="btn btn-error text-white">remove</button>
             </div>
             </div>
             
