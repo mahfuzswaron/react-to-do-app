@@ -37,16 +37,16 @@ const Tasks = () => {
             {
                 show 
                 ?
-                <form onSubmit={addTask} className='flex flex-col gap-3 w-1/2 mx-auto'>
+                <form onSubmit={addTask} className='flex flex-col gap-3 lg:w-1/2 mx-auto'>
                 <input required type="text" placeholder="Title" name='title' className="input input-bordered w-full bg-white " />
-                <textarea required name='description' className="textarea textarea-bordered  bg-white " placeholder="Description"></textarea>
+                <textarea required name='description' className="textarea textarea-bordered bg-white " placeholder="Description"></textarea>
                 <button className="btn btn-outline btn-primary btn-wide w-full sm:btn-sm md:btn-md" type='submit'> ADD </button>
                 </form>
                 :
-                <button onClick={()=> setShow(true)} className='btn btn-primary btn-outline border-dashed w-1/2'>ADD NEW TASK</button>
+                <button onClick={()=> setShow(true)} className='btn btn-primary btn-outline border-dashed lg:w-1/2 '>ADD NEW TASK</button>
             }
 
-            <div className='flex flex-col mx-auto w-1/2 '>
+            <div className='flex flex-col mx-auto lg:w-1/2  '>
                 {
                     tasks.map((task) => <Task
                     key={task._id}
