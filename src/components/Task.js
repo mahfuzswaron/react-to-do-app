@@ -6,7 +6,7 @@ const Task = ({ task }) => {
     const [completed, setCompleted] = useState(false);
 
     const deleteTask = () => {
-        fetch(`http://localhost:5000/tasks/${_id}`, {
+        fetch(`https://peaceful-hollows-65824.herokuapp.com/tasks/${_id}`, {
             method: 'DELETE', 
             headers: {
                 'content-type': 'application/json'

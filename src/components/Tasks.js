@@ -6,7 +6,7 @@ const Tasks = () => {
     const [show, setShow] = useState(false);
     
     useEffect(() => {
-        fetch('http://localhost:5000/tasks').then(res=>res.json()).then(data => setTasks(data))
+        fetch('https://peaceful-hollows-65824.herokuapp.com/tasks').then(res=>res.json()).then(data => setTasks(data))
     }, [tasks])
     
     const addTask = (e) => {
@@ -14,7 +14,7 @@ const Tasks = () => {
         const description = e.target.description.value;
         const newTask = { title, description}
 
-        fetch('http://localhost:5000/addTask', {
+        fetch('https://peaceful-hollows-65824.herokuapp.com/addTask', {
             method: 'POST', 
             headers: {
                 'content-type': 'application/json'
