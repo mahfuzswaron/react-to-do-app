@@ -20,7 +20,7 @@ const Task = ({ task }) => {
             <h3 onClick={() => setShow(!show)} className='text-2xl p-1 m-1 cursor-pointer'>{completed ? <strike>{ title}</strike> :title}</h3>
             <div className={show ? 'block' : 'hidden'}>
                 <p className='text-xl p-1 m-1'>{description}</p>
-             <div class="card-actions justify-end">
+             <div className="card-actions justify-end">
                     <button onClick={() => {
                         setShow(!show)
                         setCompleted(!completed)
