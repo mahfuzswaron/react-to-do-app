@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './firebase.init';
 import Task from './Task';
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
     const [show, setShow] = useState(false);
-    
+    const [user, loading, error] = useAuthState(auth);
     useEffect(() => {
-        fetch('https://peaceful-hollows-65824.herokuapp.com/tasks').then(res=>res.json()).then(data => setTasks(data))
-    }, [tasks])
+        fetch('https://peaceful-hollows-65824.herokuapp.com/tasks', {
+            method: "GET",
+            headers: {
+                'content-type': 'application/json',
+                email: user?.email
+            }
+        }).then(res=>res.json()).then(data => setTasks(data))
+    }, [tasks, user])
     
     const addTask = (e) => {
         const title = e.target.title.value;
         const description = e.target.description.value;
-        const newTask = { title, description}
+        const newTask = { title, description, userEmail: user?.email }
+        
 
         fetch('https://peaceful-hollows-65824.herokuapp.com/addTask', {
             method: 'POST', 
@@ -31,6 +40,13 @@ const Tasks = () => {
         e.target.reset();
         e.preventDefault();
     }
+    if (loading) {
+        return <p>loding...</p>
+    }
+    if (error) {
+        return <p>{error.message}</p>
+    }
+    
 
     return (
         <div>
